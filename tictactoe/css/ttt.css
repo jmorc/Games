@@ -1,0 +1,44 @@
+body {
+  font-family: Georgia;
+  text-align: center;
+}
+
+h1 {
+  font-size: 75px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+h3 {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+hr {
+
+  width: 40%;
+}
+
+#ttt-board {
+  margin: 0 auto;
+  margin-top: 75px;
+  width: 306px;
+  height: 306px;
+  padding: 0;
+  border: 1px solid black;
+}
+
+.square {
+  padding: 0;
+  margin: 0;
+  width: 100px;
+  height: 100px;
+  border: 1px solid gainsboro;
+  float: left;
+  text-align: center;
+}
+
+.mark {
+  font-size: 75px;
+}
+
