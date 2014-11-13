@@ -15,10 +15,11 @@
   Snake.prototype.move = function() {
     console.log("Direction: " + this.dir);
     var thisSnake = this;
-    this.segments.forEach(function(segment) {
-      segment.plus(DIRS[thisSnake.dir]);
-    });
-  }
+    var oldSegs = this.segments.slice(0);
+    var newHead = this.segments[0].plus(DIRS[thisSnake.dir]);
+    this.segments.unshift(newHead);
+    this.segments.pop();
+  };
   
   Snake.prototype.turn = function(dir) {
     this.dir = dir;
