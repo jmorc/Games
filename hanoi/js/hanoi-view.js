@@ -1,6 +1,6 @@
 (function(rootObject){
   
-  var Hanoi = rootObject.Hanoi = rootObject.Hanoi || {}; 
+  var Hanoi = rootObject.Hanoi || {}; 
   
   var View = Hanoi.View = function(game, $el) {
     this.game = game;
@@ -33,12 +33,10 @@
   View.prototype.clickTower = function(event) {
     var $tower = $(event.currentTarget);
     if (this.fromTowerIdx != null) {
-      console.log("second click");
       var targetTower = $tower.attr('id') - 1;
       this.makeMove(this.fromTowerIdx, targetTower);
       this.fromTowerIdx = null;
     } else {
-      console.log("storing id");
       this.fromTowerIdx = $tower.attr('id') - 1;
       $tower.css("border-bottom", "4px solid #60D6A9");
     }  
@@ -55,8 +53,6 @@
     } else {
       alert("Invalid Move!!");
     }
-    
-    
   };
   
 })(this);

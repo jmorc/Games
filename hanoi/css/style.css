@@ -1,11 +1,28 @@
+body {
+  font-family: Georgia;
+  text-align: center;
+}
+
+h1 {
+  font-size: 75px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 30px;
+}
+
+hr {
+  width: 60%;
+}
+
 #hanoi-board {
+  margin: 0 auto;
   display: table;
   border-spacing: 15px;
 }
 
 .tower {
   width: 302px;
-  height: 350px;
+  height: 380px;
   text-align: center;
   display: table-cell;
   vertical-align: bottom;

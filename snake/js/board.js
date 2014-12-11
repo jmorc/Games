@@ -20,7 +20,7 @@
   };
   
   Board.prototype.newGrid = function() {
-    var newArray = new Array(20);
+    var newArray = new Array(25);
     newArray = _.map(newArray, function(el){
       return new Array(20);
     });
@@ -44,6 +44,19 @@
     return boardString;
   };
 
+  Board.prototype.renderBrowser = function() {
+    _.each(this.grid, function(row) {
+      _.each(row, function(el) {
+        if (el === 1) {
+          // attach a class to display
+          
+          $gridEl = $('#R ')
+          boardString += el;
+        }
+      });
+    });
+  };
+  
   Board.prototype.moveSnake = function() {
     var segs = this.snake.segments;
     var thisBoard = this;
@@ -54,7 +67,7 @@
     this.snake.move();
     segs = this.snake.segments;
     _.each(segs, function(coord) {
-      thisBoard.grid[coord.row][coord.col] = "S";
+      thisBoard.grid[coord.row][coord.col] = 1;
     });
   };
 
