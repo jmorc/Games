@@ -6,7 +6,7 @@
   var Board = SnakeGame.Board = function() {
     this.grid = this.newGrid();
     this.snake = this.starterSnake();
-  }
+  };
   
   Board.prototype.starterSnake = function() {
     var segs = [];
@@ -20,11 +20,16 @@
   };
   
   Board.prototype.newGrid = function() {
-    var newArray = new Array(25);
-    newArray = _.map(newArray, function(el){
-      return new Array(20);
+    var gridArray = []
+    for (var i = 0; i < 25; i++) {
+      gridArray.push([])
+    }
+    _.each(gridArray, function(el) {
+      for (var i = 0; i < 20; i++) {
+        el.push(0);
+      };
     });
-    return newArray;
+    return gridArray;
   };
   
   Board.prototype.render = function() {
@@ -45,16 +50,16 @@
   };
 
   Board.prototype.renderBrowser = function() {
-    _.each(this.grid, function(row) {
-      _.each(row, function(el) {
-        if (el === 1) {
-          // attach a class to display
-          
-          $gridEl = $('#R ')
-          boardString += el;
+    for (var row = 0; row < 25; row++) {
+      for (var col = 0; col < 20; col++) {
+        $gridEl = $("#Row" + row + "-Col" + col);
+        if (this.grid[row][col] === 1) {
+          $gridEl.addClass("snake-square");
+        } else {
+          $gridEl.removeClass("snake-square");
         }
-      });
-    });
+      }
+    }
   };
   
   Board.prototype.moveSnake = function() {

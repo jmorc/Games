@@ -21,7 +21,7 @@
   
   View.prototype.step = function() {
     this.board.moveSnake();
-    this.board.render();
+    this.board.renderBrowser();
   };
   
   View.prototype.setBoard = function() {
