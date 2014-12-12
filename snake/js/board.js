@@ -9,28 +9,6 @@
   };
   
   
-  Board.prototype.maybeAddApples = function() {
-    if (_.random(1, 15) === 15) {
-      _(3).times(function(){ 
-        var row = _.random(0, 24);
-        var col = _.random(0, 19);
-        $appleEl = $("#Row" + row + "-Col" + col);
-        $appleEl.addClass("apple")
-      });
-    }
-  };
-  
-  Board.prototype.starterSnake = function() {
-    var segs = [];
-    var thisBoard = this;
-    _.times(4, function(n){
-      segs.push(new SnakeGame.Coord(10 + n, 10));
-      thisBoard.grid[10 + n][10] = "S";
-    });
-    
-    return new Snake("U", segs);
-  };
-  
   Board.prototype.checkGameOver = function() {
     var headRow = this.snake.segments[0].row;
     var headCol = this.snake.segments[0].col; 
@@ -43,6 +21,39 @@
       this.newGame();
     }
   };
+  
+  Board.prototype.disposeApple = function() {
+    var currentSquare = this.snake.segments[0];
+    $currentSquare = $("#Row" + currentSquare.row + "-Col" + currentSquare.col);
+    $currentSquare.removeClass('apple');
+    debugger    
+  };
+  
+  Board.prototype.maybeAddApples = function() {
+    var that = this;
+    if (_.random(1, 15) === 15) {
+      _(3).times(function(){ 
+        var row = _.random(0, 24);
+        var col = _.random(0, 19);
+        $appleEl = $("#Row" + row + "-Col" + col);
+        $appleEl.addClass("apple");
+        that.grid[row][col] = 'apple';
+      });
+    }
+  };
+  
+  Board.prototype.starterSnake = function() {
+    var segs = [];
+    var thisBoard = this;
+    _.times(4, function(n){
+      segs.push(new SnakeGame.Coord(10 + n, 10));
+      thisBoard.grid[10 + n][10] = 'snake';
+    });
+    
+    return new Snake("U", segs);
+  };
+  
+  
     
   Board.prototype.newGame = function() {
     location.reload();  
@@ -82,8 +93,11 @@
     for (var row = 0; row < 25; row++) {
       for (var col = 0; col < 20; col++) {
         $gridEl = $("#Row" + row + "-Col" + col);
-        if (this.grid[row][col] === 1) {
+        if (this.grid[row][col] === 'snake') {
           $gridEl.addClass("snake-square");
+          $gridEl.removeClass("apple");
+        } else if (this.grid[row][col] === 'apple') {
+          $gridEl.addClass("apple");
         } else {
           $gridEl.removeClass("snake-square");
         }
@@ -94,15 +108,8 @@
   Board.prototype.moveSnake = function() {
     var segs = this.snake.segments;
     var thisBoard = this;
-    _.each(segs, function(coord) {
-      thisBoard.grid[coord.row][coord.col] = undefined;
-    });
-    
-    this.snake.move();
-    segs = this.snake.segments;
-    _.each(segs, function(coord) {
-      thisBoard.grid[coord.row][coord.col] = 1;
-    });
+
+    this.snake.move(thisBoard);   
   };
 
 })(this);

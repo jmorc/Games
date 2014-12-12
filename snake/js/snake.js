@@ -13,13 +13,22 @@
     console.log(DIRS);
   }
   
-  Snake.prototype.move = function() {
-    console.log("Direction: " + this.dir);
-    var thisSnake = this;
+  Snake.prototype.move = function(board) {
     var oldSegs = this.segments.slice(0);
-    var newHead = this.segments[0].plus(DIRS[thisSnake.dir]);
+    var newHead = this.segments[0].plus(DIRS[this.dir]);
+    
     this.segments.unshift(newHead);
-    this.segments.pop();
+    if (board.grid[newHead.row][newHead.col] !== 'apple') {
+      this.segments.pop();
+    }
+    
+    _.each(oldSegs, function(coord) {
+      board.grid[coord.row][coord.col] = '';
+    });
+    
+    _.each(this.segments, function(coord) {
+      board.grid[coord.row][coord.col] = 'snake';
+    });
   };
   
   Snake.prototype.turn = function(dir) {
