@@ -7,7 +7,7 @@
     $(window).on('keydown', this.handleKeydown.bind(this))
     this.board = new SnakeGame.Board();
     
-    rootObj.setInterval(this.step.bind(this), 1000);
+    rootObj.setInterval(this.step.bind(this), 500);
   };
   
   View.prototype.handleKeydown = function(event) {
@@ -22,6 +22,8 @@
   View.prototype.step = function() {
     this.board.moveSnake();
     this.board.renderBrowser();
+    this.board.maybeAddApples();
+    this.board.checkGameOver();
   };
   
   View.prototype.setBoard = function() {

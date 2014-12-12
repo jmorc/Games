@@ -8,6 +8,18 @@
     this.snake = this.starterSnake();
   };
   
+  
+  Board.prototype.maybeAddApples = function() {
+    if (_.random(1, 15) === 15) {
+      _(3).times(function(){ 
+        var row = _.random(0, 24);
+        var col = _.random(0, 19);
+        $appleEl = $("#Row" + row + "-Col" + col);
+        $appleEl.addClass("apple")
+      });
+    }
+  };
+  
   Board.prototype.starterSnake = function() {
     var segs = [];
     var thisBoard = this;
@@ -17,6 +29,23 @@
     });
     
     return new Snake("U", segs);
+  };
+  
+  Board.prototype.checkGameOver = function() {
+    var headRow = this.snake.segments[0].row;
+    var headCol = this.snake.segments[0].col; 
+    var dir = this.snake.dir;
+    if ((headRow == 0 && dir === 'U') || (headRow == 24 && dir === 'D')) {
+      alert("Loser!!! Row out of bounds.")
+      this.newGame();
+    } else if (headCol < 0 || headCol > 19) {
+      alert("Loser!!! Col out of bounds.")
+      this.newGame();
+    }
+  };
+    
+  Board.prototype.newGame = function() {
+    location.reload();  
   };
   
   Board.prototype.newGrid = function() {
