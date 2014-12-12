@@ -16,11 +16,17 @@
   Snake.prototype.move = function(board) {
     var oldSegs = this.segments.slice(0);
     var newHead = this.segments[0].plus(DIRS[this.dir]);
-    
+    var newSquare = board.grid[newHead.row][newHead.col];
     this.segments.unshift(newHead);
-    if (board.grid[newHead.row][newHead.col] !== 'apple') {
-      this.segments.pop();
-    }
+    
+    
+   
+    if (newSquare !== 'apple') { this.segments.pop() }
+    
+     if (newSquare === 'snake') { 
+       alert("Loser!!! Snake ate itself")
+       board.newGame(); 
+     }
     
     _.each(oldSegs, function(coord) {
       board.grid[coord.row][coord.col] = '';
