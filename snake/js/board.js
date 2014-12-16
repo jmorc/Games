@@ -50,11 +50,11 @@
     var segs = [];
     var thisBoard = this;
     _.times(4, function(n){
-      segs.push(new SnakeGame.Coord(6, 15 + n));
-      thisBoard.grid[6][15 + n] = 'snake';
+      segs.push(new SnakeGame.Coord(6, 20 + n));
+      thisBoard.grid[6][20 + n] = 'snake';
     });
     
-    return new Snake("U", segs);
+    return new Snake("L", segs);
   };
     
   Board.prototype.newGame = function() {

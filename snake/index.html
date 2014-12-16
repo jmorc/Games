@@ -13,9 +13,13 @@
   </head>
   <body>
     <div id="snake-board"></div>
-
     <script>
       var view = new SnakeGame.View($("#snake-board"), 12, 31);
     </script>
+    <div class="instructions-wrapper">  
+      <div class="instructions">Space to pause</div>
+      <div id="directions"></div>
+      <div class="instructions">Arrows to steer</div>
+    </div>
   </body>
 </html>
