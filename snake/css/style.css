@@ -11,19 +11,27 @@
   margin-right: auto;;
   width: 775px;
   height: 300px;
-  border: 2px dashed #046ca3;
+  border: 5px solid #ADFF2F;
+  background-image: url("house_and_hills.jpg");
+  background-size: 775px 300px;
 }
 
 .snake-square {
-  background-color: green;
-  width: 23px;
-  height: 23px;
+  background-color: #ADFF2F;
+  border: 3px solid green;
+  width: 17px;
+  height: 17px;
   margin: 1px;
-  border-radius: 5px;
+  border-radius: 12px;
   
 }
 
 .apple {
-  background-color: red;
+  background-image: url("apple1.png");
+  border-radius: 5px;
+  background-size: 19px 19px;
+  border: 3px solid #CD5C5C;
+  width: 19px;
+  height: 19px;
 }
 
