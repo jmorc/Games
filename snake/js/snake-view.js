@@ -3,9 +3,11 @@
   
   var View = SnakeGame.View = function($el) {
     this.$el = $el;
-    this.setBoard();
+    this.setBoard(25, 20);
     $(window).on('keydown', this.handleKeydown.bind(this))
-    this.board = new SnakeGame.Board();
+    this.board = new SnakeGame.Board(25, 20);
+    
+    
     this.pause = false;
     
     rootObj.setInterval(this.step.bind(this), 300);
@@ -37,10 +39,10 @@
     }
   };
   
-  View.prototype.setBoard = function() {
+  View.prototype.setBoard = function(numRows, numCols) {
     var rowString = ""
-    _.times(25, function(row){
-      _.times(20, function(col) { 
+    _.times(numRows, function(row){
+      _.times(numCols, function(col) { 
         rowString += ("<div class='grid-square' id='Row" + row + "-Col" + col + "'></div>")
       });
     });
