@@ -24,7 +24,7 @@
     if (newSquare !== 'apple') { this.segments.pop() }
     
      if (newSquare === 'snake') { 
-       alert("Loser!!! Snake ate itself")
+       alert("Game over. The snake has hit itself, which is fatal for a 2-dimensional snake.")
        board.newGame(); 
      }
     

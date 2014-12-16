@@ -18,21 +18,14 @@
     var dir = this.snake.dir;
     if ((headRow == 0 && dir === 'U') || 
        (headRow == this.numRows - 1 && dir === 'D')) {
-      alert("Loser!!! Row out of bounds.")
+      alert("Good game.  You hit a boundary and died.")
       this.newGame();
     } else if (headCol < 0 || headCol > this.numCols - 1) {
-      alert("Loser!!! Col out of bounds.")
+      alert("Not bad Snakin'.  But you hit a boundary and died.")
       this.newGame();
     }
   };
-  
-  // Board.prototype.disposeApple = function() {
- //    var currentSquare = this.snake.segments[0];
- //    $currentSquare = $("#Row" + currentSquare.row + "-Col" + currentSquare.col);
- //    $currentSquare.removeClass('apple');
- //    debugger
- //  };
-  
+   
   Board.prototype.maybeAddApples = function() {
     var that = this;
     if (_.random(1, 15) === 15) {
@@ -74,23 +67,6 @@
     return gridArray;
   };
   
- // Board.prototype.render = function() {
- //    var boardString = "\n";
- //    _.each(this.grid, function(row) {
- //      _.each(row, function(el) {
- //        if (el === undefined) {
- //          boardString += " .";
- //        } else {
- //          boardString += el;
- //        }
- //      });
- //      boardString += "\n";
- //    });
- //    console.log(boardString);
- //    console.log("Snake head: " + this.snake.segments[0].toString());
- //    return boardString;
- //  };
-
   Board.prototype.renderBrowser = function() {
     for (var row = 0; row < this.numRows; row++) {
       for (var col = 0; col < this.numCols; col++) {
