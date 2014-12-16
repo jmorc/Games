@@ -1,15 +1,12 @@
 (function(rootObj) {
   var SnakeGame = rootObj.SnakeGame = rootObj.SnakeGame || {};
   
-  var View = SnakeGame.View = function($el) {
+  var View = SnakeGame.View = function($el, numRows, numCols) {
     this.$el = $el;
-    this.setBoard(25, 20);
+    this.setBoard(numRows, numCols);
     $(window).on('keydown', this.handleKeydown.bind(this))
-    this.board = new SnakeGame.Board(25, 20);
-    
-    
+    this.board = new SnakeGame.Board(numRows, numCols);
     this.pause = false;
-    
     rootObj.setInterval(this.step.bind(this), 300);
   };
   
