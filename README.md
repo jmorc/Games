@@ -1,16 +1,16 @@
 # Snake and other games
 
-Includes code for browser games in javascript: Snake, Tic-Tac-Toe, and Towers of Hanoi.  
+This repo contains Snake, Tic-Tac-Toe, and Towers of Hanoi games, implemented in the browser.  
 
-The snake game is deployed! Play it at [jeffcaves.io](http//:www.jeffcaves.io/snake.html "Play the snake game").
+The snake game is deployed at [jeffcaves.io](http//:www.jeffcaves.io/snake.html "Play the snake game"). Give it a try!
 
 ## Features of the Snake game:
 
 **1. Object oriented design.**
-Classes are written for the `Board`, `Snake`, 'View' (the user interface), and 'Coords'. Each class is written a immediately-invoked function expression (IIFE) to avoid pollution of the global environment.  Game logic is divided among the classes as the names suggest.  'Coords' is a convenience class allowing simple access to the rows and columns of the board.  
+Classes are written for the `Board`, `Snake`, `View` (user interface), and `Coords`. Each class is written as an immediately-invoked function expression (IIFE) to limit pollution of the global environment.  Game logic is divided among the classes as the class names suggest.  'Coords' is a convenience class that allows simple access to the rows and columns of the board.  
 
 **2. jQuery Library.**
-jQuery is employed for convenient HTML document traversal and handling of keyboard input.  For example, the `renderBrowser` function, written on the `Board` prototype, uses simple jQuery functions like `#addClass` to translate between the state of the board (whether a grid square is empty or contains a snake or apple) and the board display:  
+jQuery is employed for convenient HTML document traversal and handling of keyboard input.  For example, the `renderBrowser` function, written on the `Board` prototype, uses jQuery functions like `#addClass` and #removeClass`. These functions assign the desired classes to the squares of the board (reflecting whether a grid square is empty, or contains a snake segment, or an apple). The state of the board squares is maintained `Board.grid`.  
 
 ```javascript
   Board.prototype.renderBrowser = function() {
@@ -31,7 +31,7 @@ jQuery is employed for convenient HTML document traversal and handling of keyboa
 ```
 
 **3. How does the snake move?**
-`#setInterval` calls `View.prototype.step` every 300 milliseconds to advance the game.  This function provides a convenient summary of the events of each step of the game:
+Using`setInterval`, `View.prototype.step` is called every 300 milliseconds to advance the game.  This calls a series of functions:
 
 ```javascript
   View.prototype.step = function() {
@@ -44,7 +44,7 @@ jQuery is employed for convenient HTML document traversal and handling of keyboa
   };
 ```
 
-The snake object points to an array of `Coords` objects (in `Snake.segments`) that describe the coordinates of each segment of the snake.  The snake segments are updated every step of the game by adding a segment to head of the snake based on the direction of motion.  Then, unless the snake has advanced into a square containing an apple, the last `Coord` (the snake's tail) is popped out of the `Snake.segments` array to advance the snake.    
+The snake object points to an array of `Coords` objects, `Snake.segments`, that describe the coordinates of each segment of the snake.  `moveSnake` updates the segments by adding a segment to head of the snake, based on the snake's direction of motion, `Snake.dir`.  Then, the final `Coord` (the snake's tail) is popped out of the `Snake.segments`. By adding a head segment and popping out the tail, the length of the snake does not change.  In the special case when the snake advances into an apple square, the tail is not popped off.  Consequently, the snake grows one segment longer.    
 
 
 
