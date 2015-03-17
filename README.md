@@ -2,7 +2,7 @@
 
 This repo contains Snake, Tic-Tac-Toe, and Towers of Hanoi games, implemented in the browser.  
 
-The snake game is deployed at [jeffcaves.io](http//:www.jeffcaves.io/snake.html "Play the snake game"). Give it a try!
+The snake game is deployed at [jeffcaves.io](http://www.jeffcaves.io/snake.html "Play the snake game"). Give it a try!
 
 ## Features of the Snake game:
 
