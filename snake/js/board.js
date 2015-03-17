@@ -11,7 +11,6 @@
     
   };
   
-  
   Board.prototype.checkGameOver = function() {
     var headRow = this.snake.segments[0].row;
     var headCol = this.snake.segments[0].col; 

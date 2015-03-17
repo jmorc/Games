@@ -19,6 +19,11 @@
                       39: 'R', 
                       40: 'D',
                     };
+      if (this.board.snake.oppositeDir() === keyDirs[event.keyCode]) {
+        // snake cannot turn directly back on itself
+        return;
+      }
+
       this.board.snake.turn(keyDirs[event.keyCode]);
     }
   };

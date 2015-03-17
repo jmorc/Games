@@ -40,5 +40,18 @@
   Snake.prototype.turn = function(dir) {
     this.dir = dir;
   }
+
+  Snake.prototype.oppositeDir = function() {
+    switch (this.dir) {
+      case "L":
+       return "R";
+      case "R":
+       return "L";
+      case "U":
+       return "D";
+      case "D":
+       return "U";
+    }
+  }
   
 })(this);
